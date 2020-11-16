@@ -31,7 +31,7 @@ services:
         arguments:
             - '%env(APP_ENV)%'
             - '%env(APP_DEBUG)%'
-            - '%env(APP_MYSECRET%'
+            - '%env(APP_MYSECRET)%'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

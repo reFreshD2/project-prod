@@ -3,9 +3,8 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Annotation\Route;
 
 class AppController extends AbstractController
 {
@@ -13,7 +12,7 @@ class AppController extends AbstractController
     private $appDebug;
     private $appSecret;
 
-    public function __construct($appEnv,$appDebug,$appSecret)
+    public function __construct($appEnv, $appDebug, $appSecret)
     {
         $this->appEnv = $appEnv;
         $this->appDebug = $appDebug;
@@ -25,11 +24,13 @@ class AppController extends AbstractController
      */
     public function index()
     {
-        $number = random_int(0,100);
-        $data = array('env'=> $_ENV, 'my_num' => $number);
+        $number = random_int(0, 100);
+        $data = [];
+        $data[] = ['env' => $this->appEnv, 'my_num' => $number];
         if ($this->appDebug) {
             $data[] = ['my_secret' => $this->appSecret];
         }
+
         return new JsonResponse($data);
     }
 }
